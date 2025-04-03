@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub PR Info Copier",
+  "version": "1.0",
+  "description": "Adds a button to copy PR information in HTML format",
+  "permissions": ["clipboardWrite"],
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*/pull/*"],
+      "js": ["content.js"]
+    }
+  ]
+} 
