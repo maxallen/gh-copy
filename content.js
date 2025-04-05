@@ -58,18 +58,21 @@ function createCopyButton() {
   }
 }
 
-
 // Run when page loads
-if (window.location.href.match(/github\.com\/.*\/.*\/pull\/\d+/)) {
-  createCopyButton();
-}
+createCopyButton();
+  
+// Also listen for CMD+Shift+L
+document.addEventListener('keydown', (event) => {
+  // Check if CMD+Shift+L is pressed (metaKey is CMD on Mac, Ctrl on Windows)
+  if (event.metaKey && event.shiftKey && event.key === 'l') {
+    event.preventDefault();
+    copyPRInfo();
+  }
+});
 
 // Watch for navigation changes (for single page app navigation)
 const observer = new MutationObserver((mutations) => {
-  // More specific check for PR pages using regex
-  if (window.location.href.match(/github\.com\/.*\/.*\/pull\/\d+/)) {
-    createCopyButton();
-  }
+  createCopyButton();
 });
 
 // Only observe if we're on github.com
