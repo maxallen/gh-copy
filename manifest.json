@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "GitHub PR Info Copier",
-  "version": "1.1",
-  "description": "Quick copy GitHub PR information with CMD+Shift+L or a button next to the PR title",
+  "version": "1.2",
+  "description": "Quick copy GitHub PR information with CMD+Shift+o or a button next to the PR title",
   "permissions": ["clipboardWrite"],
   "content_scripts": [
     {
