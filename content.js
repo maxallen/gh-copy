@@ -23,12 +23,30 @@ function copyPRInfo() {
     // Remove the temp element
     tempElement.remove();
 
-    // Show feedback
-    const button = document.querySelector('.gh-copy-button');
-    const originalHTML = button.innerHTML;
-    button.innerHTML = '<button data-component="IconButton" type="button" class="prc-Button-ButtonBase-c50BI color-fg-success prc-Button-IconButton-szpyj" data-loading="false" data-no-visuals="true" data-size="medium" data-variant="invisible" aria-describedby=":r9:-loading-announcement" aria-labelledby=":r7:"><svg aria-hidden="true" focusable="false" class="octicon octicon-check" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" display="inline-block" overflow="visible" style="vertical-align: text-bottom;"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path></svg></button>'
+    // Log to console
+    console.log("PR info copied!");
+
+    // Create and show toast notification
+    const toast = document.createElement('div');
+    toast.textContent = "PR info copied!";
+    toast.style.position = 'fixed';
+    toast.style.top = '20px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.backgroundColor = '#2ea44f';
+    toast.style.color = 'white';
+    toast.style.padding = '10px 20px';
+    toast.style.borderRadius = '6px';
+    toast.style.zIndex = '9999';
+    toast.style.fontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif';
+    toast.style.fontSize = '14px';
+    toast.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    
+    document.body.appendChild(toast);
+    
+    // Remove toast after 1 second
     setTimeout(() => {
-      button.innerHTML = originalHTML;
+      toast.remove();
     }, 1000);
   });
 }
@@ -61,10 +79,12 @@ function createCopyButton() {
 // Run when page loads
 createCopyButton();
   
-// Also listen for CMD+Shift+L
+// Also listen for CMD+Shift+o
 document.addEventListener('keydown', (event) => {
-  // Check if CMD+Shift+L is pressed (metaKey is CMD on Mac, Ctrl on Windows)
-  if (event.metaKey && event.shiftKey && event.key === 'l') {
+  console.log("keydown event", event);
+  // Check if CMD+Shift+o is pressed (metaKey is CMD on Mac, Ctrl on Windows)
+  if (event.metaKey && event.shiftKey && event.key === 'o') {
+    console.log("CMD+Shift+o pressed", event);
     event.preventDefault();
     copyPRInfo();
   }
